@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     public float speed = 10.0f;
     public float playerXBoundary = 25.0f;
 
+    //prefab
+    public GameObject projectilePrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +21,13 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //if statement to shoot projectile
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
+        }
+
+
         //if statement to control left player boundary
         if (transform.position.x  < -playerXBoundary)
         {
