@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DetectCollisions : MonoBehaviour
 {
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +20,16 @@ public class DetectCollisions : MonoBehaviour
     //remove animals and projectiles upon collision
     private void OnTriggerEnter(Collider other)
     {
-        Destroy(gameObject);
-        Destroy(other.gameObject);
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log("You've been hit. Gave Over!");
+            Destroy(gameObject);
+        }    
+        else
+        {
+            Destroy(gameObject);
+            Destroy(other.gameObject);
+        }
+
     }
 }

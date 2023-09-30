@@ -6,8 +6,13 @@ public class PlayerController : MonoBehaviour
 {
     //variables
     public float horizontalInput;
+    public float verticalInput;
     public float speed = 10.0f;
     private float playerXBoundary = 25.0f;
+    private float playerZUpperBoundary = 10.0f;
+    private float playerZLowerBoundary = -1.0f;
+
+    public Transform projectileSpawnPoint;
 
     //prefab
     public GameObject projectilePrefab;
@@ -24,9 +29,16 @@ public class PlayerController : MonoBehaviour
         //if statement to shoot projectile
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
-        }
+            Instantiate(projectilePrefab, projectileSpawnPoint.position, projectilePrefab.transform.rotation);
+        }//if
 
+        //assigning horizontal/vertical inputs to correct axis input
+        horizontalInput = Input.GetAxis("Horizontal");
+        verticalInput = Input.GetAxis("Vertical");
+
+        //move character horizontal & vertical based on input
+        transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * speed);
+        transform.Translate(Vector3.forward * verticalInput * Time.deltaTime * speed);
 
         //if statement to control left player boundary
         if (transform.position.x  < -playerXBoundary)
@@ -40,10 +52,18 @@ public class PlayerController : MonoBehaviour
             transform.position = new Vector3(playerXBoundary, transform.position.y, transform.position.z);
         }//if
 
-        //assigning horizontal input to correct axis input
-        horizontalInput = Input.GetAxis("Horizontal");
+        //if statement to control player Z-axis upper boundary
+        if (transform.position.z > playerZUpperBoundary)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, playerZUpperBoundary);
+        }//if
 
-        //moves character left/right based on input
-        transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * speed);
+        //if statement to control player Z-axis lower boundary
+        if (transform.position.z < playerZLowerBoundary)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, playerZLowerBoundary);
+        }//if
+
     }
+     
 }
