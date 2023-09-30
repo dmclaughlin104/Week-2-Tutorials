@@ -18,12 +18,14 @@ public class DestroyOutOfBounds : MonoBehaviour
     void Update()
     {
         //destroy gameObjects if they leave gameplay area
+        //& trigger "Game Over" message if an animal gets past
         if (transform.position.z > topBundary)
         {
             Destroy(gameObject);
         }//if
         else if (transform.position.z < lowerBoundary)
             {
+                Debug.Log("Game Over!");
                 Destroy(gameObject);
             }//else if
 

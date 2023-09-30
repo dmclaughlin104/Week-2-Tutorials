@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     //variables
     public float horizontalInput;
     public float speed = 10.0f;
-    public float playerXBoundary = 25.0f;
+    private float playerXBoundary = 25.0f;
 
     //prefab
     public GameObject projectilePrefab;
@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
             transform.position = new Vector3(playerXBoundary, transform.position.y, transform.position.z);
         }//if
 
-        //assigning horizontal input to correct input
+        //assigning horizontal input to correct axis input
         horizontalInput = Input.GetAxis("Horizontal");
 
         //moves character left/right based on input
