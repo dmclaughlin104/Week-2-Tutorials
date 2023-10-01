@@ -271,7 +271,7 @@ GameObject:
   - component: {fileID: 2876498091653479582}
   m_Layer: 0
   m_Name: Animal_Moose_02
-  m_TagString: Untagged
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -334,7 +334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b7e09bf20b766c489263d2916d00593, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
+  speed: 8
 --- !u!114 &3059165730407439862
 MonoBehaviour:
   m_ObjectHideFlags: 0
