@@ -22,10 +22,6 @@ public class SpawnManagerX : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //spawns first ball after specified delay
-        //Invoke("SpawnRandonBall", startDelay);
-
-        //continues spawning balls after a random interval each time
         //not sure if this is the correct approach
         //InvokeRepeating("InvokeSpawnRandomBall", startDelay, spawnInterval);
     }
@@ -35,7 +31,8 @@ public class SpawnManagerX : MonoBehaviour
     {
         //counting seconds
         secondsCount += Time.deltaTime;
-
+        
+        //checking if 3 seconds have elapsed before invoking spawn method
         if (secondsCount >= minimumSeconds)
         {
             //resetting counter
@@ -43,9 +40,11 @@ public class SpawnManagerX : MonoBehaviour
 
             //generate random interval from range (to be added on top of 3 seconds)
             spawnInterval = Random.Range(spawnMin, spawnMax);
-            Debug.Log(spawnInterval);
             Invoke("SpawnRandomBall", spawnInterval);
-        }
+            
+            //print interval to console
+            Debug.Log("Spawn interval = " + (minimumSeconds + spawnInterval));
+        }//if
     }
 
     // Spawn random ball at random x position at top of play area
@@ -56,6 +55,9 @@ public class SpawnManagerX : MonoBehaviour
 
         // Generate random ball index and random spawn position
         Vector3 spawnPos = new Vector3(Random.Range(spawnLimitXLeft, spawnLimitXRight), spawnPosY, 0);
+        
+        //print spawn position to console
+        Debug.Log("Spawn position on X-axis = " + spawnPos.x);
 
         // instantiate ball at random spawn location
         Instantiate(ballPrefabs[randomBallSelector], spawnPos, ballPrefabs[0].transform.rotation);
